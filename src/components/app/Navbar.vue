@@ -15,7 +15,7 @@
                         href="#"
                         data-target="dropdown"
                         ref="dropdown">
-                        {{ name }}
+                        {{ name || 'USER NAME'}}
                         <i class="material-icons right">arrow_drop_down</i>
                     </a>
 
