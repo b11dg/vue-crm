@@ -31,5 +31,10 @@ export default {
     data: () => ({
         isOpen: true,
     }),
+    async mounted() {
+        if (!Object.keys(this.$store.getters.info).length) {
+            this.$store.dispatch('fetchInfo');
+        }
+    },
 };
 </script>
