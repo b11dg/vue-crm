@@ -4,8 +4,13 @@
             <div class="card-content white-text">
             <span class="card-title">Счет в валюте</span>
 
-            <p class="currency-line">
-                <span>12.0 Р</span>
+            <p
+                v-for="cur of currencies"
+                :key="cur"
+                class="currency-line">
+                <span>
+                    {{getCurrency(cur) | currency(cur)}}
+                </span>
             </p>
             </div>
         </div>
@@ -13,5 +18,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+    props: ['rates'],
+    data: () => ({
+        currencies: ['UAH', 'USD', 'EUR'],
+    }),
+    computed: {
+        base() {
+            return this.$store.getters.info.bill / (this.rates.UAH / this.rates.EUR);
+        },
+    },
+    methods: {
+        getCurrency(currency) {
+            return Math.floor(this.base * this.rates[currency]);
+        },
+    },
+};
 </script>
