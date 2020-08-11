@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>Профиль</h3>
+            <h3>{{'ProfileTitle' | localize}}</h3>
         </div>
 
         <form class="form" @submit.prevent="submitHandler">
@@ -11,24 +11,26 @@
                 id="description"
                 type="text"
                 :class="{invalid: $v.name.$dirty && !$v.name.required}">
-            <label for="description">Имя</label>
+            <label for="description">{{'Name' | localize}}</label>
             <span
                 class="helper-text invalid"
                 v-if="$v.name.$dirty && !$v.name.required">
-                Введите имя
+                {{'Message_EnterName'|localize}}
             </span>
             </div>
             <div class="switch">
                 <label>
                 English
-                <input type="checkbox">
+                <input
+                    type="checkbox"
+                    v-model="isRuLocale">
                 <span class="lever"></span>
                 Русский
                 </label>
             </div>
 
             <button class="btn waves-effect waves-light" type="submit">
-            Обновить
+            {{'UpdateBtnText' | localize}}
             <i class="material-icons right">send</i>
             </button>
         </form>
@@ -43,12 +45,14 @@ export default {
     name: 'profile',
     data: () => ({
         name: '',
+        isRuLocale: true,
     }),
     validations: {
         name: { required },
     },
     mounted() {
         this.name = this.info.name;
+        this.isRuLocale = this.info.locale === 'ru-RU';
         setTimeout(() => {
             // eslint-disable-next-line no-undef
             M.updateTextFields();
@@ -64,6 +68,7 @@ export default {
             try {
                 await this.$store.dispatch('updateInfo', {
                     name: this.name,
+                    locale: this.isRuLocale ? 'ru-RU' : 'en-EN',
                 });
             } catch (error) {
                 console.log(error);
