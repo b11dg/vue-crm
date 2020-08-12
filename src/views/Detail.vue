@@ -3,7 +3,11 @@
         <Loader v-if="loading" />
         <div v-else-if="record">
             <div class="breadcrumb-wrap">
-                <router-link to="/history" class="breadcrumb">История</router-link>
+                <router-link
+                    to="/history"
+                    class="breadcrumb">
+                    {{'Menu_History' | localize}}
+                </router-link>
                 <a @click.prevent class="breadcrumb">
                     {{record.typeText}}
                 </a>
@@ -14,9 +18,9 @@
                         class="card"
                         :class="[record.typeClass]">
                         <div class="card-content white-text">
-                            <p>Описание: {{record.description}}</p>
-                            <p>Сумма: {{record.amount | currency('UAH')}}</p>
-                            <p>Категория: {{record.categoryName}}</p>
+                            <p>{{'Description' | localize}}: {{record.description}}</p>
+                            <p>{{'Amount' | localize}}: {{record.amount | currency('UAH')}}</p>
+                            <p>{{'Category' | localize}}: {{record.categoryName}}</p>
 
                             <small>{{record.date | date('datetime')}}</small>
                         </div>
@@ -24,11 +28,13 @@
                 </div>
             </div>
         </div>
-        <p class="center" v-else>Такой записи нет</p>
+        <p class="center" v-else>{{'Message_RecordNotFound' | localize}}</p>
     </div>
 </template>
 
 <script>
+import localizeFilter from '@/filters/localize.filter';
+
 export default {
     name: 'detail',
     data: () => ({
@@ -42,7 +48,7 @@ export default {
         this.record = {
             ...record,
             categoryName: category.title,
-            typeText: record.type === 'income' ? 'Доход' : 'Расход',
+            typeText: record.type === 'income' ? localizeFilter('Income') : localizeFilter('Outcome'),
             typeClass: record.type === 'income' ? 'green' : 'red',
         };
         this.loading = false;

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>История записей</h3>
+            <h3>{{'HistoryTitle' | localize}}</h3>
         </div>
 
         <div class="history-chart">
@@ -10,8 +10,8 @@
 
         <Loader v-if="loading" />
         <p class="center" v-else-if="!records.length">
-            Записей пока нет.
-            <router-link to="/record">Добавьте запись</router-link>
+            {{'Message_RecordsNotExist' | localize}}
+            <router-link to="/record">{{'CreateNewRecord' | localize}}</router-link>
         </p>
         <section v-else>
             <HistoryTable :records="items" />
@@ -19,8 +19,8 @@
                 v-model="page"
                 :page-count="pageCount"
                 :click-handler="pageChangeHandler"
-                :prev-text="'Назад'"
-                :next-text="'Вперед'"
+                :prev-text="prevBtnText"
+                :next-text="nextBtnText"
                 :container-class="'pagination'"
                 :page-class="'waves-effect'"
             />
@@ -32,6 +32,7 @@
 import { Pie } from 'vue-chartjs';
 import paginationMixin from '@/mixins/pagination.mixin';
 import HistoryTable from '@/components/HistoryTable.vue';
+import localizeFilter from '@/filters/localize.filter';
 
 export default {
     name: 'history',
@@ -40,6 +41,8 @@ export default {
     data: () => ({
         loading: true,
         records: [],
+        prevBtnText: localizeFilter('Back'),
+        nextBtnText: localizeFilter('Forward'),
     }),
     async mounted() {
         const categories = await this.$store.dispatch('fetchCategories');
@@ -54,7 +57,7 @@ export default {
                 ...record,
                 categoryName: categories.find((c) => c.id === record.categoryId).title,
                 typeClass: record.type === 'income' ? 'green' : 'red',
-                typeText: record.type === 'income' ? 'Доход' : 'Расход',
+                typeText: record.type === 'income' ? localizeFilter('Income') : localizeFilter('Outcome'),
             })));
 
             this.renderChart({
@@ -94,3 +97,9 @@ export default {
     },
 };
 </script>
+
+<style lang="sass" scoped>
+    .pagination
+        display: flex
+        justify-content: center
+</style>

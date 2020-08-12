@@ -1,9 +1,12 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>Счет</h3>
+            <h3>{{'Menu_Bill' | localize}}</h3>
 
-            <button class="btn waves-effect waves-light btn-small" @click="refresh">
+            <button
+                class="btn waves-effect waves-light btn-small"
+                @click="refresh"
+                v-tooltip="'Tooltip_Refresh'">
             <i class="material-icons">refresh</i>
             </button>
         </div>

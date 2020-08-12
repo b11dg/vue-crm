@@ -23,14 +23,14 @@
                         <li>
                             <router-link to="/profile" class="black-text">
                                 <i class="material-icons">account_circle</i>
-                                Профиль
+                                {{'ProfileTitle' | localize}}
                             </router-link>
                         </li>
                         <li class="divider" tabindex="-1"></li>
                         <li>
                             <a href="#" class="black-text" @click.prevent="logout">
                                 <i class="material-icons">assignment_return</i>
-                                Выйти
+                                {{'Logout' | localize}}
                             </a>
                         </li>
                     </ul>

@@ -17,7 +17,8 @@
                 <router-link
                     class="btn-floating btn-large blue"
                     to="/record"
-                    v-tooltip="'Создать новую запись'">
+                    v-tooltip="'Tooltip_CreateNewOrder'"
+                    :key="locale">
                     <i class="large material-icons">add</i>
                 </router-link>
             </div>
