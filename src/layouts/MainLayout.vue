@@ -30,6 +30,7 @@
 import Navbar from '@/components/app/Navbar.vue';
 import Sidebar from '@/components/app/Sidebar.vue';
 import messages from '@/utils/messages';
+import localizeFilter from '@/filters/localize.filter';
 
 export default {
     name: 'main-layout',
@@ -58,7 +59,7 @@ export default {
     },
     watch: {
         error(fbError) {
-            this.$error(messages[fbError.code] || 'Что-то пошло не так');
+            this.$error(localizeFilter(messages[fbError.code]));
         },
     },
 };

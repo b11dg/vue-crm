@@ -58,6 +58,7 @@
 
 <script>
 import { required, minValue } from 'vuelidate/lib/validators';
+import localizeFilter from '@/filters/localize.filter';
 
 const LIMIT = 100;
 
@@ -93,7 +94,7 @@ export default {
                 };
 
                 await this.$store.dispatch('updateCategory', categoryData);
-                this.$message('Категория успешно обновлена');
+                this.$message(localizeFilter('CategoryUpdated'));
                 this.$emit('updated', categoryData);
             } catch (error) {
                 console.log(error);

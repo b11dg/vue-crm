@@ -46,6 +46,7 @@
 
 <script>
 import { required, minValue } from 'vuelidate/lib/validators';
+import localizeFilter from '@/filters/localize.filter';
 
 const LIMIT = 100;
 
@@ -77,7 +78,7 @@ export default {
                 this.title = '';
                 this.limit = LIMIT;
                 this.$v.$reset();
-                this.$message('Категория была создана');
+                this.$message(localizeFilter('CategoryHasBeenCreated'));
                 this.$emit('created', category);
             } catch (e) {
                 console.log(e);

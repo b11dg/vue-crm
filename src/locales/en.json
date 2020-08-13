@@ -59,5 +59,14 @@
     "Remaining": "Remaining",
     "Excess": "Excess by",
     "Agreement": "I agree with the rules",
-    "Record": "Record"
+    "Record": "Record",
+    "LogoutMessage": "You are logged out",
+    "LoginMessage": "You need to log in",
+    "AuthMessage_UserNotFound": "User with such email doesn't exist",
+    "AuthMessage_WrongPassword": "Wrong password",
+    "AuthMessage_EmailAlreadyUse": "Email is already in use",
+    "CategoryHasBeenCreated": "The category has been created successfully",
+    "CategoryUpdated": "Category updated successfully",
+    "RecordHasBeenCreated": "The record has been created successfully",
+    "InsufficientFunds": "Insufficient funds on the account"
 }

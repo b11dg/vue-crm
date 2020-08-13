@@ -59,5 +59,14 @@
     "Remaining": "Осталось",
     "Excess": "Превышение на",
     "Agreement": "С правилами согласен",
-    "Record": "Запись"
+    "Record": "Запись",
+    "LogoutMessage": "Вы вышли из системы",
+    "LoginMessage": "Войдите в систему",
+    "AuthMessage_UserNotFound": "Пользователя с таким email не существует",
+    "AuthMessage_WrongPassword": "Неверный пароль",
+    "AuthMessage_EmailAlreadyUse": "Email уже используется",
+    "CategoryHasBeenCreated": "Категория была успешно создана",
+    "CategoryUpdated": "Категория успешно обновлена",
+    "RecordHasBeenCreated": "Запись успешно создана",
+    "InsufficientFunds": "Недостаточно средств на счете"
 }
